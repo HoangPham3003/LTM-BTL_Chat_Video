@@ -140,7 +140,7 @@ public class NicknameView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nickname existed");
         }
         else {
-            String msg_client = "Member joined!";
+            String msg_client = "Client joined server!";
             cc.send_client_msg(msg_client);
             new JoinCreateView(nickname, this.cc).setVisible(true);
             this.setVisible(false);
