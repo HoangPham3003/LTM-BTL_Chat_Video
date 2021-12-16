@@ -5,8 +5,8 @@
  */
 package view;
 
-import controller.VideoController;
-import controller.VideoController.VideoSendThread;
+import controller.app.VideoController;
+import controller.app.VideoController.VideoSendThread;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 

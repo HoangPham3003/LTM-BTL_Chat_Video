@@ -6,8 +6,9 @@
 package view;
 
 import com.sun.glass.events.KeyEvent;
-import controller.ClientController;
+import controller.app.ClientController;
 import javax.swing.JOptionPane;
+import model.Account;
 
 /**
  *
@@ -21,17 +22,19 @@ public class JoinView extends javax.swing.JFrame {
     private String nickname;
     private ClientController cc;
     private String role;
+    Account current_acc;
     
     public JoinView() {
         initComponents();
     }
     
-    public JoinView(String nickname, ClientController cc) {
+    public JoinView(String nickname, ClientController cc, Account acc) {
         initComponents();
         this.setTitle(nickname);
         this.nickname = nickname;
         this.cc = cc;
         this.role = "Member";
+        this.current_acc = acc;
     }
 
     /**
@@ -176,7 +179,7 @@ public class JoinView extends javax.swing.JFrame {
         }
         else {
             this.cc.send_client_msg("Member joined room!");
-            new ChatView(this.nickname, room_id, this.cc, this.role).setVisible(true);
+            new ChatView(this.nickname, room_id, this.cc, this.role, this.current_acc).setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_btn_joinActionPerformed
@@ -212,7 +215,7 @@ public class JoinView extends javax.swing.JFrame {
             }
             else {
                 this.cc.send_client_msg("Member joined room!");
-                new ChatView(this.nickname, room_id, this.cc, this.role).setVisible(true);
+                new ChatView(this.nickname, room_id, this.cc, this.role, this.current_acc).setVisible(true);
                 this.setVisible(false);
             }
         }

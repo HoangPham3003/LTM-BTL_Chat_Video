@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.MemberController;
+import controller.app.MemberController;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

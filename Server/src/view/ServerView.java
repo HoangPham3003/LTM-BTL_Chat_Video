@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.ServerController;
+import controller.app.ServerController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 

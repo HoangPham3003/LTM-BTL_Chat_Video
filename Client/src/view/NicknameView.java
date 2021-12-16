@@ -6,8 +6,9 @@
 package view;
 
 import com.sun.glass.events.KeyEvent;
-import controller.ClientController;
+import controller.app.ClientController;
 import javax.swing.JOptionPane;
+import model.Account;
 
 /**
  *
@@ -19,10 +20,17 @@ public class NicknameView extends javax.swing.JFrame {
      * Creates new form NicknameView
      */
     private ClientController cc;
+    Account current_acc;
     
     public NicknameView() {
         initComponents();
         cc = new ClientController();
+    }
+    
+    public NicknameView(Account acc) {
+        initComponents();
+        cc = new ClientController();
+        this.current_acc = acc;
     }
 
     /**
@@ -123,7 +131,7 @@ public class NicknameView extends javax.swing.JFrame {
             else {
                 String msg_client = "Client joined server!";
                 cc.send_client_msg(msg_client);
-                new JoinCreateView(nickname, this.cc).setVisible(true);
+                new JoinCreateView(nickname, this.cc, current_acc).setVisible(true);
                 this.setVisible(false);
             }
         }
@@ -142,7 +150,7 @@ public class NicknameView extends javax.swing.JFrame {
         else {
             String msg_client = "Client joined server!";
             cc.send_client_msg(msg_client);
-            new JoinCreateView(nickname, this.cc).setVisible(true);
+            new JoinCreateView(nickname, this.cc, current_acc).setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_btn_enterActionPerformed

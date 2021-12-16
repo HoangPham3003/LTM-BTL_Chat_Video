@@ -5,13 +5,14 @@
  */
 package view;
 
-import controller.ClientController;
-import controller.MemberController;
-import controller.MemberController.ChatThread;
+import controller.app.ClientController;
+import controller.app.MemberController;
+import controller.app.MemberController.ChatThread;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
+import model.Account;
 /**
  *
  * @author Hoang Pham
@@ -32,13 +33,15 @@ public class ChatView extends javax.swing.JFrame {
     int room_id;
     public String nickname;
     public String role;
+    Account current_acc;
     
     public ChatView() {
         initComponents();
     }
     
-    public ChatView(String nickname, int room_id, ClientController cc, String role) {
+    public ChatView(String nickname, int room_id, ClientController cc, String role, Account acc) {
         initComponents();
+        this.current_acc = acc;
         initEmoji();
         msg_area.setContentType("text/html");
         
@@ -95,6 +98,7 @@ public class ChatView extends javax.swing.JFrame {
         btn_icon_cry = new javax.swing.JButton();
         btn_start_camera = new javax.swing.JButton();
         btn_show_camera = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,6 +189,14 @@ public class ChatView extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Account");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,7 +228,9 @@ public class ChatView extends javax.swing.JFrame {
                         .addComponent(idroom_area, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_show_members)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_show_members)
+                            .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_start_camera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -231,8 +245,10 @@ public class ChatView extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(idroom_area, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(3, 3, 3)
-                .addComponent(btn_start_camera)
-                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_start_camera)
+                    .addComponent(jButton1))
+                .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_show_members)
                     .addComponent(btn_show_camera))
@@ -366,6 +382,12 @@ public class ChatView extends javax.swing.JFrame {
         VideoRecieveView vrv = new VideoRecieveView(nickname, room_id);
         vrv.setVisible(true);
     }//GEN-LAST:event_btn_show_cameraActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AccountView accv = new AccountView(this.current_acc);
+        accv.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void close() {
         WindowEvent close_window = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -437,6 +459,7 @@ public class ChatView extends javax.swing.JFrame {
     private javax.swing.JButton btn_show_members;
     private javax.swing.JButton btn_start_camera;
     private javax.swing.JLabel idroom_area;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

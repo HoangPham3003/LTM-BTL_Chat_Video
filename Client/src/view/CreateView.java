@@ -6,8 +6,9 @@
 package view;
 
 import com.sun.glass.events.KeyEvent;
-import controller.ClientController;
+import controller.app.ClientController;
 import javax.swing.JOptionPane;
+import model.Account;
 
 /**
  *
@@ -21,17 +22,19 @@ public class CreateView extends javax.swing.JFrame {
     private String nickname;
     private ClientController cc;
     private String role;
+    Account current_acc;
     
     public CreateView() {
         initComponents();
     }
     
-    public CreateView(String nickname, ClientController cc) {
+    public CreateView(String nickname, ClientController cc, Account acc) {
         initComponents();
         this.setTitle(nickname);
         this.nickname = nickname;
         this.cc = cc;
         this.role = "Admin";
+        this.current_acc = acc;
     }
 
     /**
@@ -176,7 +179,7 @@ public class CreateView extends javax.swing.JFrame {
             this.cc.send_client_msg("Member created room!");
             msg_server = (String) cc.recv_server_msg();
             System.out.println(msg_server);
-            new ChatView(this.nickname, room_id, this.cc, this.role).setVisible(true);
+            new ChatView(this.nickname, room_id, this.cc, this.role, this.current_acc).setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_btn_createActionPerformed
@@ -213,7 +216,7 @@ public class CreateView extends javax.swing.JFrame {
                 this.cc.send_client_msg("Member created room!");
                 msg_server = (String) cc.recv_server_msg();
                 System.out.println(msg_server);
-                new ChatView(this.nickname, room_id, this.cc, this.role).setVisible(true);
+                new ChatView(this.nickname, room_id, this.cc, this.role, this.current_acc).setVisible(true);
                 this.setVisible(false);
             }
         }

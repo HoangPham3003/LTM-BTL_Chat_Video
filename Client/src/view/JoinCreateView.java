@@ -5,7 +5,8 @@
  */
 package view;
 
-import controller.ClientController;
+import controller.app.ClientController;
+import model.Account;
 
 /**
  *
@@ -18,17 +19,19 @@ public class JoinCreateView extends javax.swing.JFrame {
      */
     private String nickname;
     private ClientController cc;
+    Account current_acc;
     
     public JoinCreateView() {
         initComponents();
     }
     
-    public JoinCreateView(String nickname, ClientController cc) {
+    public JoinCreateView(String nickname, ClientController cc, Account acc) {
         initComponents();
         this.setTitle(nickname);
         this.nickname = nickname;
         this.cc = cc;
         cc.send_client_msg(nickname);
+        this.current_acc = acc;
     }
 
     /**
@@ -106,14 +109,14 @@ public class JoinCreateView extends javax.swing.JFrame {
     private void btn_joinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_joinActionPerformed
         // TODO add your handling code here:
         this.cc.send_client_msg("Client want to join room!");
-        new JoinView(nickname, this.cc).setVisible(true);
+        new JoinView(nickname, this.cc, current_acc).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_joinActionPerformed
 
     private void btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createActionPerformed
         // TODO add your handling code here:
         this.cc.send_client_msg("Client want to create room!");
-        new CreateView(nickname, this.cc).setVisible(true);
+        new CreateView(nickname, this.cc, current_acc).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_createActionPerformed
 

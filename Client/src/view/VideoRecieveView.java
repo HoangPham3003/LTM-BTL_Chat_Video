@@ -5,8 +5,8 @@
  */
 package view;
 
-import controller.VideoController;
-import controller.VideoController.VideoRecieveThread;
+import controller.app.VideoController;
+import controller.app.VideoController.VideoRecieveThread;
 
 /**
  *
